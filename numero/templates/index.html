@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Numero Index{% endblock title %}
+{% block header %}Статистичесикй психоанализ{% endblock header %}
+{% block content %}
+<form method="post" action="calc/">
+  {% csrf_token %}
+  {{ form }}
+  <input type="submit" value="send">
+</form>
+<!--{% for item in id_list %}-->
+<!--<p>{{ item }}</p>-->
+<!--{% endfor %}-->
+{% endblock content %}

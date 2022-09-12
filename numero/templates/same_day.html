@@ -1,0 +1,12 @@
+{% if same_day %}
+<div style="margin: 0 auto;">
+  <h2>С вами в один день родились:</h2>
+  {% for c in same_day %}
+  <div style="width: 200px; margin: 0 10px; display: inline-block; text-align: center;">
+    <h3 style="margin: 3px;"><a href="{{ c.3 }}" target="_blank">{{ c.0 }}</a></h3>
+    <img src="{{ c.4 }}" height="200" style="border-radius: 10px;"><br>
+    <small>{{ c.2 }}</small>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
