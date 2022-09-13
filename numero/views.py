@@ -21,6 +21,7 @@ def index(request):
     return render(request, "index.html", context=data)
 
 
+# TODO: calc matrix on over moviestar photo
 def calc(request):
     bdate = request.POST.get("bday")
     parse_date = datetime.strptime(bdate, '%d.%m.%Y')
@@ -52,7 +53,7 @@ def calc(request):
         same_day_celebs_list.append(to_list)
 
     celebs = Celeb.objects.filter(
-        birthday__year__gt=str(yy - 20),
+        birthday__year__gt=str(yy - 30),
         birthday__month=str(mm),
         birthday__day=str(dd)
     ).order_by('-birthday')#[:12]
@@ -147,8 +148,8 @@ def calc(request):
 #         _, pname, bdate, _, _, _, persid = tuple_item
 #         p = Celeb.objects.create(name=pname, birthday=bdate, persid=int(persid))
 #         # print(f"{p.id} {p.name} {p.birthday}\tOK")
-#
-#
+
+
 # def create_celeb_data_db():
 #     list_ = get_all_from_db()
 #     for tuple_item in list_:
