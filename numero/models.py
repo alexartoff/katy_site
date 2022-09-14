@@ -1,6 +1,11 @@
 from django.db import models
+from katysite.models import MainMenu
 
-# Create your models here.
+
+class NumeroMenu(models.Model):
+    name = models.CharField(max_length=90)
+    slug = models.SlugField(null=False, unique=True)
+    main_page = models.ForeignKey(MainMenu, on_delete=models.PROTECT)
 
 
 class Celeb(models.Model):

@@ -18,7 +18,7 @@ def index(request):
     data = {
         'form': bday_form,
     }
-    return render(request, "index.html", context=data)
+    return render(request, "numero.html", context=data)
 
 
 # TODO: calc matrix on over moviestar photo

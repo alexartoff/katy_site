@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% if menu %}
+<ul>
+  {% for m in menu|slice:'1:' %}
+  <li>{{ m.name }} <a href="{{ m.slug }}">===</a></li>
+  {% endfor %}
+</ul>
+{% endif %}
+</body>
+</html>

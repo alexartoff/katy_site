@@ -1,8 +1,12 @@
 from django.shortcuts import render
 
 # Create your views here.
-from django.http import HttpResponse
+from katysite.models import MainMenu
 
 
 def index(request):
-    return HttpResponse("main index <a href='/coach'>coach</a> <a href='/numero'>numero</a>")
+    menu = MainMenu.objects.all()
+    data = {
+        'menu': menu,
+    }
+    return render(request, "index.html", context=data)

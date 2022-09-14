@@ -36,6 +36,7 @@ numero_urlpatterns = [
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', mainview.index, name='main_index'),
+    # path('<slug:menu_slug>', mainview.index, name='main_index'),
     path('coach/', include(coaching_urlpatterns)),
     path('numero/', include(numero_urlpatterns)),
 ]
