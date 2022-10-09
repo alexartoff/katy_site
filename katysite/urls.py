@@ -16,10 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path
 from django.urls import include
+from rest_framework.routers import SimpleRouter
+
 from katysite import views as mainview
 from coaching import views as coach
 from numero import views as num
+from numero.views import CalcView
 
+
+router = SimpleRouter()
+router.register('api/celebs', CalcView)
 
 coaching_urlpatterns = [
     path('', coach.index, name='coaching_index'),
@@ -32,11 +38,12 @@ numero_urlpatterns = [
     path('', num.index, name='numero_index'),
     re_path(r"^calc", num.calc, name='calc_matrix')
 ]
+numero_urlpatterns += router.urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', mainview.index, name='main_index'),
     # path('<slug:menu_slug>', mainview.index, name='main_index'),
-    path('coach/', include(coaching_urlpatterns)),
-    path('numero/', include(numero_urlpatterns)),
+    path('coaching/', include(coaching_urlpatterns)),
+    path('statpsy/', include(numero_urlpatterns)),
 ]

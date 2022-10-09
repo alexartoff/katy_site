@@ -2,6 +2,8 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.http import HttpResponse
+from rest_framework.viewsets import ModelViewSet
+
 from .forms import BirthdayForm
 from .calculator.matrix_pertceva import post_date, calc_matrix, make_dict
 from psycopg2 import connect as p_conn, Error as PError
@@ -9,6 +11,18 @@ from .config.db import PG_HOST, PG_DB_NAME, PG_DB_PASS, PG_DB_USER
 from .models import Celeb, CelebData, CalcMatrix
 from datetime import datetime, date, time
 import json
+
+from .serializer import CelebsSerializer
+
+
+class CalcView(ModelViewSet):
+    today = datetime.today()
+    queryset = Celeb.objects.filter(
+        birthday__year__gt=str(today.year - 60),
+        birthday__month=str(today.month),
+        birthday__day=str(today.day)
+    ).order_by('-birthday')
+    serializer_class = CelebsSerializer
 
 
 def index(request):
